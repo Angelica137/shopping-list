@@ -1,4 +1,5 @@
 import React from "react";
+import Lists from "./Lists";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Lists />
     </div>
   );
 }
