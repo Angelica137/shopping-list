@@ -29,3 +29,12 @@ const Alert = styled.span`
   width: 100%;
   text-align: center;
 `;
+
+const Lists = ({ data, loading, error, history }) =>
+  !loading && !error ? (
+    <Title>Your lsits</Title>
+  ) : (
+    <Alert>{loading ? "Loading..." : error}</Alert>
+  );
+
+export default Lists;
