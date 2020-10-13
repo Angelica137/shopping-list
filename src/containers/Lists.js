@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import withDataFetching from "../withDataFetching";
 
 const ListWrapper = styled.div`
   display: flex;
@@ -32,9 +33,22 @@ const Alert = styled.span`
 
 const Lists = ({ data, loading, error, history }) =>
   !loading && !error ? (
-    <Title>Your lsits</Title>
+    <>
+      <Title>Your lists</Title>
+      <ListWrapper>
+        {data &&
+          data.map((list) => (
+            <ListLink key={list.id} to={`list/${list.id}`}>
+              <Title>{list.title}</Title>
+            </ListLink>
+          ))}
+      </ListWrapper>
+    </>
   ) : (
     <Alert>{loading ? "Loading..." : error}</Alert>
   );
 
-export default Lists;
+export default withDataFetching({
+  dataSource:
+    "https://my-json-server.typicode.com/PacktPublishing/React-Projects/lists",
+})(Lists);
