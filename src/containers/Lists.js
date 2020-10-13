@@ -32,7 +32,7 @@ const Alert = styled.span`
 
 const Lists = ({ data, loading, error, history }) =>
   !loading && !error ? (
-    <Title>Your lsits</Title>
+    <Title>Your lists</Title>
   ) : (
     <Alert>{loading ? "Loading..." : error}</Alert>
   );
