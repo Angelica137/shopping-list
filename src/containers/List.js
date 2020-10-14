@@ -7,7 +7,7 @@ import ListItem from "../components/ListItem/ListItem";
 const ListItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  flexj-direction: column;
+  flex-direction: column;
   margin: 2% 5%;
 `;
 
