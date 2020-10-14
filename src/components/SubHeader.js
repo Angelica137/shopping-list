@@ -20,3 +20,11 @@ const Title = styled.h2`
     margin-right: 20%;
   }
 `;
+
+const SubHeader = ({ title }) => (
+  <SubHeaderWarpper>
+    <Title>{title}</Title>
+  </SubHeaderWarpper>
+);
+
+export default SubHeader;
