@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import withDataFetching from "../withDataFetching";
+import SubHeader from "../components/Header/SubHeader";
 
 const ListWrapper = styled.div`
   display: flex;
@@ -34,7 +35,7 @@ const Alert = styled.span`
 const Lists = ({ data, loading, error, history }) =>
   !loading && !error ? (
     <>
-      <Title>Your lists</Title>
+      <SubHeader title="Your awesome lists" />
       <ListWrapper>
         {data &&
           data.map((list) => (
