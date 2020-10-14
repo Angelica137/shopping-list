@@ -12,14 +12,15 @@ const ListWrapper = styled.div`
 `;
 
 const ListLink = styled(Link)`
-  dispaly: flex;
+  display: flex;
   text-align: left;
-  align-item: center;
+  align-items: center;
   padding: 1%;
   background: lightGray;
   border-radius: 5px;
   padding: 10px;
-  margin-bottom: 2px;
+  margin-bottom: 2%;
+  color: black;
   text-decoration: none;
 `;
 
@@ -35,7 +36,7 @@ const Alert = styled.span`
 const Lists = ({ data, loading, error, history }) =>
   !loading && !error ? (
     <>
-      <SubHeader title="Your awesome lists" />
+      {history && <SubHeader title="Your Lists" />}
       <ListWrapper>
         {data &&
           data.map((list) => (
