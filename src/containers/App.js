@@ -7,6 +7,7 @@ import ListsContextProvider, {
 import Header from "../components/Header/Header";
 import Lists from "./Lists";
 import List from "./List";
+import Form from "./Form";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -34,6 +35,12 @@ const App = () => (
           {({ lists }) => (
             <Switch>
               <Route exact path="/" component={Lists} />
+              <Route
+                exact
+                path="/"
+                render={(props) => lists && <Lists lists={lists} {...props} />}
+              />
+              <Route path="/list/:id/new" component={Form} />
               <Route path="/list/:id" component={List} />
             </Switch>
           )}
