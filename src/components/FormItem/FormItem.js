@@ -2,16 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const FormItemWrapper = styled.div`
-  sisplay: flex;
+  display: flex;
   text-align: left;
   flex-direction: column;
   margin-bottom: 2%;
 `;
 
 const Label = styled.label`
-  display: black;
+  display: block;
   font-weight: bold;
-  padding: 10px 0px;
+  padding: 10px 0;
 `;
 
 const Input = styled.input`
@@ -27,7 +27,7 @@ const FormItem = ({
   id,
   label,
   type = "text",
-  palceholder = "",
+  placeholder = "",
   value,
   handleOnChange,
 }) => (
@@ -37,7 +37,7 @@ const FormItem = ({
       type={type}
       name={id}
       id={id}
-      palceholder={placeholder}
+      placeholder={placeholder}
       value={value}
     />
   </FormItemWrapper>
