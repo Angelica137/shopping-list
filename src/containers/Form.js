@@ -16,10 +16,10 @@ const SubmitButton = styled(Button)`
   margin: 2% 0;
 `;
 
-const Form = ({ match, history }) => {
+const Form = ({ match, history }) => (
   <>
     {history && (
-      <SubHeader goBack={() => hostory.goBack()} title={`Add Item`} />
+      <SubHeader goBack={() => history.goBack()} title={`Add Item`} />
     )}
     <FormWrapper>
       <form>
@@ -31,10 +31,10 @@ const Form = ({ match, history }) => {
           placeholder="0"
         />
         <FormItem id="price" label="Price" type="number" placeholder="0.00" />
-        <SubmitButton>Add item</SubmitButton>
+        <SubmitButton>Add Item</SubmitButton>
       </form>
     </FormWrapper>
-  </>;
-};
+  </>
+);
 
 export default Form;

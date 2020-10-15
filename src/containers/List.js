@@ -16,15 +16,18 @@ const Alert = styled.span`
   text-align: center;
 `;
 
-const List = ({ data, loading, error, match, history }) => {
+const List = ({ data, loading, error, lists, match, history }) => {
   const items =
     data && data.filter((item) => item.listId === parseInt(match.params.id));
+  const list =
+    lists && lists.find((list) => list.id === parseInt(match.params.id));
 
-  return !loading && !error ? (
+  return (
     <>
-      {history && (
+      {history && list && (
         <SubHeader
           goBack={() => history.goBack()}
+          title={list.title}
           openForm={() => history.push(`${match.url}/new`)}
         />
       )}
@@ -32,8 +35,6 @@ const List = ({ data, loading, error, match, history }) => {
         {items && items.map((item) => <ListItem key={item.id} data={item} />)}
       </ListItemWrapper>
     </>
-  ) : (
-    <Alert>{loading ? "Loading..." : error}</Alert>
   );
 };
 
