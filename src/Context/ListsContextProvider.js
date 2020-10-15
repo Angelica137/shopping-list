@@ -4,9 +4,9 @@ import withDataFetching from "../withDataFetching";
 export const ListsContext = React.createContext();
 
 const ListsContextProvider = ({ children, data }) => (
-  <ListsContextProvider value={{ lists: data }}>
+  <ListsContext.Provider value={{ lists: data }}>
     {children}
-  </ListsContextProvider>
+  </ListsContext.Provider>
 );
 
 export default withDataFetching({
