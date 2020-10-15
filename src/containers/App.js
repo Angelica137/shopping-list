@@ -1,6 +1,9 @@
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { Route, Switch } from "react-router-dom";
+import ListsContextProvider, {
+  ListsContext,
+} from "../Context/ListsContextProvider";
 import Header from "../components/Header/Header";
 import Lists from "./Lists";
 import List from "./List";
@@ -26,10 +29,16 @@ const App = () => (
     <GlobalStyle />
     <AppWrapper>
       <Header />
-      <Switch>
-        <Route exact path="/" component={Lists} />
-        <Route path="/list/:id" component={List} />
-      </Switch>
+      <ListsContextProvider>
+        <ListsContext.Consumer>
+          {({ lists }) => (
+            <Switch>
+              <Route exact path="/" component={Lists} />
+              <Route path="/list/:id" component={List} />
+            </Switch>
+          )}
+        </ListsContext.Consumer>
+      </ListsContextProvider>
     </AppWrapper>
   </>
 );
