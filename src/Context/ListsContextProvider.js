@@ -2,6 +2,32 @@ import React from "react";
 
 export const ListsContext = React.createContext();
 
+const initialValue = {
+  lists: [],
+  loading: true,
+  error: "",
+};
+
+const reducer = (value, action) => {
+  switch (action.type) {
+    case "GET_LISTS_SUCCESS":
+      return {
+        ...value,
+        lists: action.payload,
+        loading: false,
+      };
+    case "GET_LISTS_ERROR":
+      return {
+        ...value,
+        lists: [],
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return value;
+  }
+};
+
 async function fetchData(dataSource) {
   try {
     const data = await fetch(dataSource);
@@ -16,21 +42,24 @@ async function fetchData(dataSource) {
 }
 
 const ListsContextProvider = ({ children }) => {
-  const [lists, setLists] = React.useState([]);
-  React.useEffect(() => {
-    const asyncFetchData = async (dataSource) => {
-      const result = await fetchData(dataSource);
+  const [value, dispatch] = React.useReducer(reducer, initialValue);
 
-      setLists([...result.data]);
-    };
-
-    asyncFetchData(
+  const getListsRequest = async () => {
+    const result = await fetchData(
       "https://my-json-server.typicode.com/PacktPublishing/React-Projects/lists"
     );
-  }, [fetchData, setLists]);
+
+    if (result.data && result.data.length) {
+      dispatch({ type: "GET_LISTS_SUCCESS", payload: result.data });
+    } else {
+      dispatch({ type: "GET_LISTS_ERROR", payload: result.error });
+    }
+  };
 
   return (
-    <ListsContext.Provider value={{ lists }}>{children}</ListsContext.Provider>
+    <ListsContext.Provider value={{ ...value, getListsRequest }}>
+      {children}
+    </ListsContext.Provider>
   );
 };
 
