@@ -4,6 +4,9 @@ import { Route, Switch } from "react-router-dom";
 import ListsContextProvider, {
   ListsContext,
 } from "../Context/ListsContextProvider";
+import ItemsContextProvider, {
+  ItemsContext,
+} from "../Context/ItemsContextProvider";
 import Header from "../components/Header/Header";
 import Lists from "./Lists";
 import List from "./List";
@@ -31,22 +34,32 @@ const App = () => (
     <AppWrapper>
       <Header />
       <ListsContextProvider>
-        <ListsContext.Consumer>
-          {({ lists }) => (
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={(props) => lists && <Lists lists={lists} {...props} />}
-              />
-              <Route path="/list/:id/new" component={Form} />
-              <Route
-                path="/list/:id"
-                render={(props) => lists && <List lists={lists} {...props} />}
-              />
-            </Switch>
-          )}
-        </ListsContext.Consumer>
+        <ItemsContextProvider>
+          <ListsContext.Consumer>
+            {({ lists }) => (
+              <ItemsContext.Consumer>
+                {({ items }) => (
+                  <Switch>
+                    <Route
+                      exact
+                      path="/"
+                      render={(props) =>
+                        lists && <Lists lists={lists} {...props} />
+                      }
+                    />
+                    <Route path="/list/:id/new" component={Form} />
+                    <Route
+                      path="/list/:id"
+                      render={(props) =>
+                        lists && items && <List lists={lists} {...props} />
+                      }
+                    />
+                  </Switch>
+                )}
+              </ItemsContext.Consumer>
+            )}
+          </ListsContext.Consumer>
+        </ItemsContextProvider>
       </ListsContextProvider>
     </AppWrapper>
   </>

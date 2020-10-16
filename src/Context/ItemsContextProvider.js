@@ -1,10 +1,12 @@
 import React from "react";
-import withDataFetching from "withDataFetching";
+import withDataFetching from "../withDataFetching";
+
+export const ItemsContext = React.createContext();
 
 export const ItemsContextProvider = ({ children, data }) => (
-  <ItemsContextProvider.Provider value={{ items: data }}>
+  <ItemsContext.Provider value={{ items: data }}>
     {children}
-  </ItemsContextProvider.Provider>
+  </ItemsContext.Provider>
 );
 
 export default withDataFetching({
