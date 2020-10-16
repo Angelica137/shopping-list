@@ -16,13 +16,11 @@ async function fetchData(dataSource) {
   }
 }
 
-const ListsContextProvider = ({ children, data }) => (
-  <ListsContext.Provider value={{ lists: data }}>
-    {children}
-  </ListsContext.Provider>
-);
+const ListsContextProvider = ({ children }) => {
+  const [lists, setlists] = React.useState([]);
+  return (
+    <ListsContext.Provider value={{ lists }}>{children}</ListsContext.Provider>
+  );
+};
 
-export default withDataFetching({
-  dataSource:
-    "https://my-json-server.typicode.com/PacktPublishing/React-Projects/lists",
-})(ListsContextProvider);
+export default ListsContextProvider;
