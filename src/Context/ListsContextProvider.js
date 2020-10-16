@@ -1,5 +1,4 @@
 import React from "react";
-import withDataFetching from "../withDataFetching";
 
 export const ListsContext = React.createContext();
 
@@ -17,7 +16,19 @@ async function fetchData(dataSource) {
 }
 
 const ListsContextProvider = ({ children }) => {
-  const [lists, setlists] = React.useState([]);
+  const [lists, setLists] = React.useState([]);
+  React.useEffect(() => {
+    const asyncFetchData = async (dataSource) => {
+      const result = await fetchData(dataSource);
+
+      setLists([...result.data]);
+    };
+
+    asyncFetchData(
+      "https://my-json-server.typicode.com/PacktPublishing/React-Projects/lists"
+    );
+  }, [fetchData, setLists]);
+
   return (
     <ListsContext.Provider value={{ lists }}>{children}</ListsContext.Provider>
   );
