@@ -41,6 +41,22 @@ async function fetchData(dataSource) {
   }
 }
 
+async function postData(dataSource, content) {
+  try {
+    const data = await fetch(dataSource, {
+      method: "POST",
+      body: JSON.stringify(content),
+    });
+    const dataJSON = await data.json();
+
+    if (dataJSON) {
+      return await { data: dataJSON, error: false };
+    }
+  } catch (error) {
+    return { data: false, error: error.message };
+  }
+}
+
 const ItemsContextProvider = ({ children }) => {
   const [value, dispatch] = React.useReducer(reducer, initialValue);
 
