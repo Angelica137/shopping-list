@@ -81,9 +81,20 @@ const ListsContextProvider = ({ children }) => {
       dispatch({ type: "GET_LIST_ERROR", payload: result.error });
     }
   };
+
+  const addListRequest = (content) => {
+    actionDispatch({
+      type: "ADD_LIST_REQUEST",
+      payload: {
+        dataSource:
+          "https://my-json-server.typicode.com/PacktPublishing/React-Projects/items",
+        content,
+      },
+    });
+  };
   return (
     <ListsContext.Provider
-      value={{ ...value, getListsRequest, getListRequest }}
+      value={{ ...value, getListsRequest, getListRequest, addListRequest }}
     >
       {children}
     </ListsContext.Provider>
