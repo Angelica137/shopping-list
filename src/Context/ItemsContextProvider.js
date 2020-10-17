@@ -29,6 +29,12 @@ const reducer = (value, action) => {
         loading: false,
         error: "somethign went wrong",
       };
+    case "ADD_ITEM_ERROR":
+      return {
+        ...value,
+        loading: false,
+        error: "Something went wrong...",
+      };
     default:
       return value;
   }
@@ -90,6 +96,7 @@ const ItemsContextProvider = ({ children }) => {
       dispatch({ type: "ADD_ITEM_ERROR " });
     }
   };
+
   return (
     <ItemsContext.Provider
       value={{ ...value, getItemsRequest, addItemRequest }}
