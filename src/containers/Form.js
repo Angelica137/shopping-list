@@ -21,6 +21,18 @@ const Form = ({ addItemRequest, match, history }) => {
   const [quantity, setQuantity] = React.useState("");
   const [price, setPrice] = React.useState("");
 
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    addItemRequest({
+      title,
+      quantity,
+      price,
+      id: Math.floor(Math.random() * 100),
+      listId: parseInt(match.params.id),
+    });
+    history.goBack();
+  };
+
   return (
     <>
       {history && (
