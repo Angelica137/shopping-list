@@ -2,11 +2,11 @@ import React from "react";
 import ListsContextProvider from "./ListsContextProvider";
 import ItemsContextProvider from "./ItemsContextProvider";
 
-const GlobalContext = ({ childer }) => {
+const GlobalContext = ({ children }) => {
   return (
-    <ListContextProvider>
+    <ListsContextProvider>
       <ItemsContextProvider>{children}</ItemsContextProvider>
-    </ListContextProvider>
+    </ListsContextProvider>
   );
 };
 

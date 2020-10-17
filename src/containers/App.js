@@ -29,64 +29,11 @@ const App = () => (
     <AppWrapper>
       <Header />
       <GlobalContext>
-        <ListsContext.Consumer>
-          {({
-            lists,
-            loading: listsLoading,
-            error: listsError,
-            getListsRequest,
-          }) => (
-            <ItemsContext.Consumer>
-              {({
-                items,
-                loading: itemsLoading,
-                error: itemsError,
-                getItemsRequest,
-                addItemRequest,
-              }) => (
-                <Switch>
-                  <Route
-                    exact
-                    path="/"
-                    render={(props) =>
-                      lists && (
-                        <Lists
-                          lists={lists}
-                          loading={listsLoading}
-                          error={listsError}
-                          getListsRequest={getListsRequest}
-                          {...props}
-                        />
-                      )
-                    }
-                  />
-                  <Route
-                    path="/list/:id/new"
-                    render={(props) => (
-                      <Form addItemRequest={addItemRequest} {...props} />
-                    )}
-                  />
-                  <Route
-                    path="/list/:id"
-                    render={(props) =>
-                      lists &&
-                      items && (
-                        <List
-                          lists={lists}
-                          items={items}
-                          loading={itemsLoading}
-                          error={itemsError}
-                          getItemsRequest={getItemsRequest}
-                          {...props}
-                        />
-                      )
-                    }
-                  />
-                </Switch>
-              )}
-            </ItemsContext.Consumer>
-          )}
-        </ListsContext.Consumer>
+        <Switch>
+          <Route exact path="/" component={Lists} />
+          <Route path="/list/:id/new" component={Form} />
+          <Route path="/list/:id" component={List} />
+        </Switch>
       </GlobalContext>
     </AppWrapper>
   </>
