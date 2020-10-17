@@ -48,6 +48,7 @@ const App = () => (
                   loading: itemsLoading,
                   error: itemsError,
                   getItemsRequest,
+                  addItemRequest,
                 }) => (
                   <Switch>
                     <Route
@@ -65,7 +66,12 @@ const App = () => (
                         )
                       }
                     />
-                    <Route path="/list/:id/new" component={Form} />
+                    <Route
+                      path="/list/:id/new"
+                      render={(props) => (
+                        <Form addItemRequest={addItemRequest} {...props} />
+                      )}
+                    />
                     <Route
                       path="/list/:id"
                       render={(props) =>
