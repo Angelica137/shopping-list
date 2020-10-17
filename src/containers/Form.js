@@ -47,7 +47,7 @@ const Form = ({ match, history }) => {
             label="Title"
             placeholder="Insert title"
             value={title}
-            handleOnCHange={setQuantity}
+            handleOnCHange={setTitle}
           />
           <FormItem
             id="quantity"
