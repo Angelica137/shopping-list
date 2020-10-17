@@ -27,6 +27,7 @@ const reducer = (value, action) => {
         ...value,
         items: [...value.items, action.payload],
         loading: false,
+        error: "somethign went wrong",
       };
     default:
       return value;
