@@ -16,25 +16,31 @@ const SubmitButton = styled(Button)`
   margin: 2% 0;
 `;
 
-const Form = ({ match, history }) => (
-  <>
-    {history && (
-      <SubHeader goBack={() => history.goBack()} title={`Add Item`} />
-    )}
-    <FormWrapper>
-      <form>
-        <FormItem id="title" label="Title" placeholder="Insert title" />
-        <FormItem
-          id="quantity"
-          label="Quantity"
-          type="number"
-          placeholder="0"
-        />
-        <FormItem id="price" label="Price" type="number" placeholder="0.00" />
-        <SubmitButton>Add Item</SubmitButton>
-      </form>
-    </FormWrapper>
-  </>
-);
+const Form = ({ addItemRequest, match, history }) => {
+  const [title, setTitle] = React.useState("");
+  const [quantity, setQuantity] = React.useState("");
+  const [price, setPrice] = React.useState("");
+
+  return (
+    <>
+      {history && (
+        <SubHeader goBack={() => history.goBack()} title={`Add Item`} />
+      )}
+      <FormWrapper>
+        <form>
+          <FormItem id="title" label="Title" placeholder="Insert title" />
+          <FormItem
+            id="quantity"
+            label="Quantity"
+            type="number"
+            placeholder="0"
+          />
+          <FormItem id="price" label="Price" type="number" placeholder="0.00" />
+          <SubmitButton>Add Item</SubmitButton>
+        </form>
+      </FormWrapper>
+    </>
+  );
+};
 
 export default Form;
