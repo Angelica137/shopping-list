@@ -6,7 +6,7 @@ const SubHeaderWarpper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background: navajowhit;
+  background: navajowhite;
 `;
 
 const Title = styled.h2`
