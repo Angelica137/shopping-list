@@ -43,7 +43,12 @@ const App = () => (
               getListsRequest,
             }) => (
               <ItemsContext.Consumer>
-                {({ items }) => (
+                {({
+                  items,
+                  loading: itemsLoading,
+                  error: itemsError,
+                  getItemsRequest,
+                }) => (
                   <Switch>
                     <Route
                       exact
@@ -64,7 +69,17 @@ const App = () => (
                     <Route
                       path="/list/:id"
                       render={(props) =>
-                        lists && items && <List lists={lists} {...props} />
+                        lists &&
+                        items && (
+                          <List
+                            lists={lists}
+                            items={items}
+                            loading={itemsLoading}
+                            error={itemsError}
+                            getItemsRequest={getItemsRequest}
+                            {...props}
+                          />
+                        )
                       }
                     />
                   </Switch>
