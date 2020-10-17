@@ -20,8 +20,13 @@ const reducer = (value, action) => {
       return {
         ...value,
         items: [],
+        loading: action.payload,
+      };
+    case "ADD_ITEM_SUCCESS":
+      return {
+        ...value,
+        items: [...value.items, action.payload],
         loading: false,
-        error: action.payload,
       };
     default:
       return value;
