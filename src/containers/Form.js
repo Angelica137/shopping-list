@@ -39,7 +39,7 @@ const Form = ({ addItemRequest, match, history }) => {
         <SubHeader goBack={() => history.goBack()} title={`Add Item`} />
       )}
       <FormWrapper>
-        <form>
+        <form onSubmit={handleOnSubmit}>
           <FormItem
             id="title"
             label="Title"
