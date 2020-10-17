@@ -78,8 +78,22 @@ const ItemsContextProvider = ({ children }) => {
     }
   };
 
+  const addItemRequest = async (content) => {
+    const result = await postData(
+      "https://my-json-server.typicode.com/PacktPublishing/React-Projects/items",
+      content
+    );
+
+    if (result.data && result.data.hasOwnProperty("id")) {
+      dispatch({ type: "ADD_ITEM_SUCCESS", payload: content });
+    } else {
+      dispatch({ type: "ADD_ITEM_ERROR " });
+    }
+  };
   return (
-    <ItemsContext.Provider value={{ ...value, getItemsRequest }}>
+    <ItemsContext.Provider
+      value={{ ...value, getItemsRequest, addItemRequest }}
+    >
       {children}
     </ItemsContext.Provider>
   );
