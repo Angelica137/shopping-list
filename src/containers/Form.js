@@ -28,14 +28,29 @@ const Form = ({ addItemRequest, match, history }) => {
       )}
       <FormWrapper>
         <form>
-          <FormItem id="title" label="Title" placeholder="Insert title" />
+          <FormItem
+            id="title"
+            label="Title"
+            placeholder="Insert title"
+            value={title}
+            handleOnCHange={setQuantity}
+          />
           <FormItem
             id="quantity"
             label="Quantity"
             type="number"
             placeholder="0"
+            value={quantity}
+            handleOnChange={setQuantity}
           />
-          <FormItem id="price" label="Price" type="number" placeholder="0.00" />
+          <FormItem
+            id="price"
+            label="Price"
+            type="number"
+            placeholder="0.00"
+            value={price}
+            handleOnChange={setPrice}
+          />
           <SubmitButton>Add Item</SubmitButton>
         </form>
       </FormWrapper>
