@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import withDataFetching from "../withDataFetching";
 import SubHeader from "../components/Header/SubHeader";
 import ListItem from "../components/ListItem/ListItem";
 
@@ -20,21 +19,22 @@ const List = ({
   items,
   loading,
   error,
-  lists,
+  list,
+  getListRequest,
   getItemsRequest,
   match,
   history,
 }) => {
-  const list =
-    lists && lists.find((list) => list.id === parseInt(match.params.id));
-
   React.useEffect(() => {
+    if (!list.id) {
+      getListRequest(match.params.id);
+    }
     if (!items.length > 0) {
       getItemsRequest(match.params.id);
     }
-  }, [items, match.params.id, getItemsRequest]);
+  }, [items, list, match.params.id, getItemsRequest, getListRequest]);
 
-  return (
+  return !loading && !error ? (
     <>
       {history && list && (
         <SubHeader
@@ -47,10 +47,9 @@ const List = ({
         {items && items.map((item) => <ListItem key={item.id} data={item} />)}
       </ListItemWrapper>
     </>
+  ) : (
+    <Alert>{loading ? "Loading..." : error}</Alert>
   );
 };
 
-export default withDataFetching({
-  dataSource:
-    "https://my-json-server.typicode.com/pranayfpackt/-React-Projects/items",
-})(List);
+export default List;
