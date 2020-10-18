@@ -75,15 +75,26 @@ const ListsContextProvider = ({ children }) => {
       `https://my-json-server.typicode.com/PacktPublishing/React-Projects/lists/${id}`
     );
 
-    if (result.data && result.data.has.OwnProperty("id")) {
+    if (result.data && result.data.hasOwnProperty("id")) {
       dispatch({ type: "GET_LIST_SUCCESS", payload: result.data });
     } else {
       dispatch({ type: "GET_LIST_ERROR", payload: result.error });
     }
   };
+
+  const addListRequest = (content) => {
+    actionDispatch({
+      type: "ADD_LIST_REQUEST",
+      payload: {
+        dataSource:
+          "https://my-json-server.typicode.com/PacktPublishing/React-Projects/items",
+        content,
+      },
+    });
+  };
   return (
     <ListsContext.Provider
-      value={{ ...value, getListsRequest, getListRequest }}
+      value={{ ...value, getListsRequest, getListRequest, addListRequest }}
     >
       {children}
     </ListsContext.Provider>

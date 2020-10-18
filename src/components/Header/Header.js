@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const HeaderWrapper = styled.div`
   background-color: orange;
+  height: 100%;
   height: flex;
   flex-direction: column;
   align-items: center;
